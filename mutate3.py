@@ -19,6 +19,8 @@
 import sys
 import random
 
+from subprocess import check_output
+
 ### Mutation tricks ###
 
 NULL_STRING = " "
@@ -109,7 +111,7 @@ mutation_trick = {
 def main(input_file, output_file=False):
     random.seed()
 
-    source_code = open(input_file).read().split('\n')
+    source_code = read_file_strip_comments(input_file).decode('utf-8').split('\n')
     number_of_lines_of_code = len(source_code)
 
     # try mutating a random line
@@ -163,6 +165,11 @@ def main(input_file, output_file=False):
                 return
     sys.stderr.write("Could not create a mutant. Please make sure it is a C file.\n")
     sys.stderr.write("You may need to indent your C file.\n")
+
+
+def read_file_strip_comments(source_code):
+    process = check_output(['cpp', '-fpreprocessed', source_code], shell=False)
+    return process
 
 
 def write_to_file(mutant_file_name, source_code, mutated_line_number, mutated_line):
