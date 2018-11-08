@@ -146,12 +146,13 @@ def main(input_file, output_file=False):
                 else:
                     mutate_with = mutation_trick[mops][random.randint(0, len(mutation_trick[mops])-1)]
 
-                sys.stderr.write("\n==> @ Line: "+str(i+1)+"\n\n")
-                sys.stderr.write("Original Line  : "+source_code[i].strip()+"\n")
+                sys.stderr.write("\n==> @ Line: " + str(i + 1) + "\n")
+                sys.stderr.write("Original Line  : " + source_code[i].strip() + "\n")
 
                 mutated_line = source_code[i][0:mutate_at_index] + source_code[i][mutate_at_index:].replace(mops, mutate_with, 1)
 
                 sys.stderr.write("After Mutation : " + mutated_line.strip() + "\n")
+                sys.stderr.write("_" * (len("After Mutation : ") + mutate_at_index) + "^\n")
 
                 if output_file:
                     write_to_file(output_file, source_code, i, mutated_line)
@@ -173,7 +174,7 @@ def write_to_file(mutant_file_name, source_code, mutated_line_number, mutated_li
 
     for i, line in enumerate(source_code):
         if i == mutated_line_number:
-            output_file.write("/* XXX: original code was : " + line + " */\n")
+            output_file.write("/* MUTATION: original code was : " + line + " */\n")
             output_file.write(mutated_line + "\n")
         else:
             output_file.write(source_code[i] + "\n")
