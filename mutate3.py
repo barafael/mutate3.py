@@ -189,4 +189,4 @@ if __name__ == "__main__":
         assert sys.argv[1] != sys.argv[2]  # Input file and Output file cannot be same
         main(sys.argv[1], sys.argv[2])
     else:
-        print("Usage: python mutate.py <file-to-mutate.c> [output-mutant-file-name.c]")
+        print("Usage: python mutate3.py <file-to-mutate.c> [output-mutant-file-name.c]")
