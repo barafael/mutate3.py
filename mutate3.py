@@ -79,8 +79,6 @@ mutation_trick = {
 
     "return ": ["return 0;", "return 1;", "return NULL;", "return -1;", "return 2* ", "return -1 * "],
 
-    # for embedded systems
-
     "0x0 ": ["0x1 ", "0x5 ", "0xA ", "0xF "],
     "0x1 ": ["0x0 ", "0x5 ", "0xA ", "0xF "],
     "0x5 ": ["0x0 ", "0x1 ", "0xA ", "0xF "],
@@ -93,8 +91,6 @@ mutation_trick = {
     "0xAA ": ["0x00 ", "0x55 ", "0xFF "],
     "0xFF ": ["0x00 ", "0x55 ", "0xAA "],
     "[": ["[ -1 + ", "[ 1 + ", "[ 0 * "],
-
-    "(": " (! ",
 
     ");": ["*0);", "*-1);", "*2);"],
     ",": [", ! ", ", 0 * ", ", -1 * ", ", 2 *"],
