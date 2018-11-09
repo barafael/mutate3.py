@@ -107,7 +107,7 @@ mutation_trick = {
 def main(input_file, output_file=False):
     random.seed()
 
-    source_code = read_file_strip_comments(input_file).decode('utf-8').split('\n')
+    source_code = read_file_strip_comments(input_file)
     number_of_lines_of_code = len(source_code)
 
     # try mutating a random line
@@ -166,7 +166,9 @@ def main(input_file, output_file=False):
 
 def read_file_strip_comments(source_code):
     process = check_output(['cpp', '-fpreprocessed', source_code], shell=False)
-    return process
+    source_code = process.decode('utf-8').split('\n')
+    source_code[0] = "//" + source_code[0]
+    return source_code
 
 
 def write_to_file(mutant_file_name, source_code, mutated_line_number, mutated_line):
